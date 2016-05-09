@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C30AAAC1CE0557800D1BB7F /* NSDate+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AAAB1CE0557800D1BB7F /* NSDate+Today.m */; };
 		8CB1D80B1CDC255900DB57F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D80A1CDC255900DB57F1 /* main.m */; };
 		8CB1D80E1CDC255900DB57F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D80D1CDC255900DB57F1 /* AppDelegate.m */; };
 		8CB1D8111CDC255900DB57F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D8101CDC255900DB57F1 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C30AAAA1CE0557800D1BB7F /* NSDate+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Today.h"; sourceTree = "<group>"; };
+		8C30AAAB1CE0557800D1BB7F /* NSDate+Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Today.m"; sourceTree = "<group>"; };
 		8CB1D8061CDC255900DB57F1 /* DHPlayBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHPlayBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB1D80A1CDC255900DB57F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8CB1D80C1CDC255900DB57F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +48,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C30AAA81CE0556D00D1BB7F /* Addition */ = {
+			isa = PBXGroup;
+			children = (
+				8C30AAA91CE0557800D1BB7F /* NSDate */,
+			);
+			path = Addition;
+			sourceTree = "<group>";
+		};
+		8C30AAA91CE0557800D1BB7F /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				8C30AAAA1CE0557800D1BB7F /* NSDate+Today.h */,
+				8C30AAAB1CE0557800D1BB7F /* NSDate+Today.m */,
+			);
+			path = NSDate;
+			sourceTree = "<group>";
+		};
 		8CB1D7FD1CDC255900DB57F1 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +109,7 @@
 		8CB1D8201CDC258100DB57F1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8C30AAA81CE0556D00D1BB7F /* Addition */,
 				8CB1D8211CDC258100DB57F1 /* Manager */,
 			);
 			path = Classes;
@@ -177,6 +198,7 @@
 			files = (
 				8CB1D8111CDC255900DB57F1 /* ViewController.m in Sources */,
 				8CB1D80E1CDC255900DB57F1 /* AppDelegate.m in Sources */,
+				8C30AAAC1CE0557800D1BB7F /* NSDate+Today.m in Sources */,
 				8CB1D80B1CDC255900DB57F1 /* main.m in Sources */,
 				8CB1D8271CDC3E2B00DB57F1 /* DHCentralManager.m in Sources */,
 				8CB1D82A1CDC3E4700DB57F1 /* DHPeripheralManager.m in Sources */,
@@ -330,6 +352,7 @@
 				8CB1D81F1CDC255900DB57F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

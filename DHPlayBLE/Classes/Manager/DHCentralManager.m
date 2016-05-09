@@ -217,7 +217,7 @@ static DHCentralManager *_manager = nil;
         if (![key isEqualToString:_currentKey]) {
             _currentKey = key;
             NSString *msg = [dictionary allValues][0];
-            [_message appendFormat:_message.length > 0 ? @"\n%@\t\t%@" : @"%@\t\t%@",key,msg];
+            [_message appendFormat:_message.length > 0 ? @"\n%@    %@" : @"%@    %@",key,msg];
 
             if (_receiverMessage)
                 _receiverMessage(_message);

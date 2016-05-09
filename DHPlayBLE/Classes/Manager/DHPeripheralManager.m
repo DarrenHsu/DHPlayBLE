@@ -9,6 +9,7 @@
 @import CoreBluetooth;
 
 #import "DHPeripheralManager.h"
+#import "NSDate+Today.h"
 
 #define NOTIFY_MTU 20
 
@@ -58,8 +59,9 @@ static DHPeripheralManager *_manager = nil;
         _msgArray = [NSMutableArray new];
 
     NSDate *key = [NSDate new];
+    NSString *keyStr = [key getStringWithFormat:@"HH:mm:ss"];
 
-    NSDictionary *dict = @{[NSString stringWithFormat:@"%@",key] : message};
+    NSDictionary *dict = @{[NSString stringWithFormat:@"%@",keyStr] : message};
 
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict

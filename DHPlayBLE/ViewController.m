@@ -10,8 +10,11 @@
 #import "DHCentralManager.h"
 #import "DHPeripheralManager.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextViewDelegate> {
+    CGRect _orignalRect;
+}
 
+@property (nonatomic, weak) IBOutlet UIView *baseView;
 @property (nonatomic, weak) IBOutlet UITextView *receiverTextView;
 @property (nonatomic, weak) IBOutlet UITextView *sendTextView;
 
@@ -26,10 +29,10 @@
 #define TRANSFER_CHARACTERISTIC_UUID    @"08590F7E-DB05-467E-8757-72F6FAEB13D4"
 
 - (IBAction) sendMessage:(id)sender {
-    [_sendTextView resignFirstResponder];
-
     [_peripheralManager changeMessage:_sendTextView.text];
     [_peripheralManager start];
+
+    _sendTextView.text = nil;
 }
 
 - (void)viewDidLoad {
@@ -50,11 +53,52 @@
     [_centralManager start:^(NSString *message) {
         _receiverTextView.text = message;
     }];
+
+    /* 偵測鍵盤是否出現 */
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    _orignalRect = _receiverTextView.frame;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGRect krect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+
+    CGFloat height = self.view.frame.size.height - krect.origin.y;
+
+    CGRect frame = self.view.frame;
+    frame.origin.y = -height;
+
+    CGRect rrect = _orignalRect;
+
+    rrect.origin.y += height;
+    rrect.size.height -= height;
+
+    [UIView animateWithDuration:0.28 animations:^{
+        _receiverTextView.frame = rrect;
+        self.view.frame = frame;
+    }];
+}
+
+- (void) keyboardDidHide:(NSNotification *)note {
+    CGRect frame = self.view.frame;
+    frame.origin.y = 0;
+
+    [UIView animateWithDuration:0.28 animations:^{
+        _receiverTextView.frame = _orignalRect;
+        self.view.frame = frame;
+    }];
 }
 
 - (void) tapRecognizer:(UITapGestureRecognizer *) recognizer {
@@ -63,6 +107,22 @@
 }
 
 #pragma mark - UITextViewDelegate
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    return YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+
+}
+
 - (void)textViewDidChange:(UITextView *)textView {
     [_peripheralManager stop];
 }
