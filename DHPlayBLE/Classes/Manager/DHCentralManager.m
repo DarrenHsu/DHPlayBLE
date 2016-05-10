@@ -207,10 +207,10 @@ static DHCentralManager *_manager = nil;
 
     NSString *stringFromData = [[NSString alloc] initWithData:characteristic.value encoding:NSUTF8StringEncoding];
     if ([stringFromData isEqualToString:@"EOM"]) {
-        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
-        [self.centralManager cancelPeripheralConnection:peripheral];
 
-        NSLog(@"cancelPeripheralConnection");
+        [peripheral setNotifyValue:NO forCharacteristic:characteristic];
+
+        [self.centralManager cancelPeripheralConnection:peripheral];
 
         DHManager *manager = [DHManager shardInstance];
         NSString *msg = [manager appendMessageData:_data];
