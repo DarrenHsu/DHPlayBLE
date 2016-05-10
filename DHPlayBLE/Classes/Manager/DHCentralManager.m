@@ -55,6 +55,7 @@ static DHCentralManager *_manager = nil;
 
 - (void) start:(void(^)(NSString *message)) receiverMessage {
     _receiverMessage = receiverMessage;
+
     [self start];
 }
 
@@ -62,7 +63,7 @@ static DHCentralManager *_manager = nil;
     [self cleanup];
 }
 
-- (void)cleanup {
+- (void) cleanup {
     if (_discoveredPeripheral.state != CBPeripheralStateConnected) {
         return;
     }
@@ -119,7 +120,6 @@ static DHCentralManager *_manager = nil;
 
     NSLog(@"Scanning stopped");
 
-    // Clear the data that we may already have
     [self.data setLength:0];
 
     peripheral.delegate = self;
@@ -138,7 +138,7 @@ static DHCentralManager *_manager = nil;
 
     _discoveredPeripheral = nil;
 
-    [self start];
+    [self performSelector:@selector(start) withObject:nil afterDelay:1];
 }
 
 #pragma mark - CBPeripheralDelegate Methods

@@ -69,7 +69,7 @@ static DHManager *_manager = nil;
 }
 
 - (NSString *) appendMessageDict:(NSDictionary *) dict {
-    NSLog(@"%@",dict);
+    if (!dict) return nil;
 
     NSString *key = [NSString stringWithFormat:@"%@_%@",dict[DHMessageSenderKey],dict[DHMessageTimeKey]];
     if (![_mappingDict objectForKey:key]) {

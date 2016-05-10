@@ -58,11 +58,6 @@
     [_centralManager createManagerWithServiceId:TRANSFER_SERVICE_UUID
                                characteristicId:TRANSFER_CHARACTERISTIC_UUID];
 
-    [_centralManager start:^(NSString *message) {
-        _receiverTextView.text = message;
-        _receiverTextView.font = [UIFont boldSystemFontOfSize:14];
-    }];
-
     /* 偵測鍵盤是否出現 */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -73,6 +68,11 @@
     [super viewDidAppear:animated];
 
     _orignalRect = _receiverTextView.frame;
+
+    [_centralManager start:^(NSString *message) {
+        _receiverTextView.text = message;
+        _receiverTextView.font = [UIFont boldSystemFontOfSize:14];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
