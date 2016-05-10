@@ -9,7 +9,7 @@
 @import CoreBluetooth;
 
 #import "DHPeripheralManager.h"
-#import "NSDate+Today.h"
+#import "DHManager.h"
 
 #define NOTIFY_MTU 20
 
@@ -17,7 +17,7 @@ static DHPeripheralManager *_manager = nil;
 
 @interface DHPeripheralManager () <CBPeripheralManagerDelegate>
 
-@property (nonatomic, strong) NSMutableArray            *msgArray;
+@property (nonatomic, strong) NSMutableDictionary       *centralDict;
 @property (nonatomic, strong) NSString                  *message;
 @property (nonatomic, strong) NSString                  *cUUID;
 @property (nonatomic, strong) NSString                  *sUUID;
@@ -26,6 +26,7 @@ static DHPeripheralManager *_manager = nil;
 @property (nonatomic, strong) NSData                    *dataToSend;
 @property (nonatomic, readwrite) NSInteger              sendDataIndex;
 @property (nonatomic, assign) BOOL                      sendingEOM;
+
 
 @end
 
@@ -54,21 +55,9 @@ static DHPeripheralManager *_manager = nil;
     [self createManagerWithServiceId:sUUID characteristicId:cUUID message:nil];
 }
 
-- (void) changeMessage:(NSString *) message; {
-    if (!_msgArray)
-        _msgArray = [NSMutableArray new];
-
-    NSDate *key = [NSDate new];
-    NSString *keyStr = [key getStringWithFormat:@"HH:mm:ss"];
-
-    NSDictionary *dict = @{[NSString stringWithFormat:@"%@",keyStr] : message};
-
-    NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-
-    _message = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+- (void) changeMessage:(NSString *) message sender:(NSString *) sender time:(NSString *) time {
+    DHManager *manager = [DHManager shardInstance];
+    _message = [manager createMessage:message time:time sender:sender];
 }
 
 - (void) start {
@@ -144,17 +133,17 @@ static DHPeripheralManager *_manager = nil;
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral willRestoreState:(NSDictionary<NSString *, id> *)dict {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(nullable NSError *)error {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didAddService:(CBService *)service error:(nullable NSError *)error {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 
@@ -169,17 +158,17 @@ static DHPeripheralManager *_manager = nil;
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveReadRequest:(CBATTRequest *)request {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheral didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests {
-    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE periphera> %@", NSStringFromSelector(_cmd));
 
 }
 

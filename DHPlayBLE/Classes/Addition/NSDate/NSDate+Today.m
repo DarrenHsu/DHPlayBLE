@@ -11,25 +11,25 @@
 @implementation NSDate (Today)
 
 - (NSInteger) chineseYearValue {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
     NSInteger year = [birthdayComponents year];
     return year - 1911;
 }
 
 - (NSInteger) yearValue {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
     NSInteger year = [birthdayComponents year];
     return year;
 }
 
 - (NSInteger) monthValue {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
     NSInteger month = [birthdayComponents month];
     return month;
 }
 
 - (NSInteger) dayValue {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
     NSInteger day = [birthdayComponents day];
     return day;
 }
@@ -40,7 +40,7 @@
 }
 
 + (NSString *) getToday {
-    NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSInteger year = [todayComponents year];
     NSInteger month = [todayComponents month];
     NSInteger day = [todayComponents day];
@@ -49,7 +49,7 @@
 }
 
 + (NSString *) getChineseToday {
-    NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *todayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSInteger year = [todayComponents year];
     NSInteger month = [todayComponents month];
     NSInteger day = [todayComponents day];
@@ -58,7 +58,7 @@
 }
 
 + (NSString *) getChineseDateStringWithDate:(NSDate *)date {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     NSInteger year = [birthdayComponents year];
     NSInteger month = [birthdayComponents month];
     NSInteger day = [birthdayComponents day];
@@ -90,7 +90,7 @@
     NSDate *insureDate = [now increaseMonth:6];
 
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:insureDate
                                        options:0];
@@ -102,7 +102,7 @@
     NSDate *insureDate = [date increaseMonth:6];
 
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:insureDate
                                        options:0];
@@ -113,7 +113,7 @@
 - (NSInteger) yearSinceToday {
     NSDate* now = [NSDate date];
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:now
                                        options:0];
@@ -123,7 +123,7 @@
 
 - (NSInteger) yearSinceDate:(NSDate *)  date {
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:date
                                        options:0];
@@ -134,7 +134,7 @@
 - (NSInteger) monthSinceToday {
     NSDate* now = [NSDate date];
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:now
                                        options:0];
@@ -145,7 +145,7 @@
 - (NSInteger) daySinceToday {
     NSDate* now = [NSDate date];
     NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
-                                       components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                                       components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                        fromDate:self
                                        toDate:now
                                        options:0];
@@ -154,7 +154,7 @@
 }
 
 - (NSString *) getChineseDateString {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self];
     NSInteger year = [birthdayComponents year];
     NSInteger month = [birthdayComponents month];
     NSInteger day = [birthdayComponents day];
@@ -162,7 +162,7 @@
 }
 
 - (NSString *) getFullChineseDateString {
-    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit | NSSecondCalendarUnit  fromDate:self];
+    NSDateComponents *birthdayComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitMinute | NSCalendarUnitHour | NSCalendarUnitSecond  fromDate:self];
     NSInteger year = [birthdayComponents year];
     NSInteger month = [birthdayComponents month];
     NSInteger day = [birthdayComponents day];
@@ -173,35 +173,35 @@
 }
 
 - (NSDate *) increaseYear:(NSInteger) year {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setYear:year];
     return [gregorian dateByAddingComponents:dateComponents toDate:self options:0];
 }
 
 - (NSDate *) increaseMonth:(NSInteger) month {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMonth:month];
     return [gregorian dateByAddingComponents:dateComponents toDate:self options:0];
 }
 
 - (NSDate *) increaseDay:(NSInteger) day {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setDay:day];
     return [gregorian dateByAddingComponents:dateComponents toDate:self options:0];
 }
 
 - (NSDate *) increaseHour:(NSInteger) hour {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setHour:hour];
     return [gregorian dateByAddingComponents:dateComponents toDate:self options:0];
 }
 
 - (NSDate *) increaseMinit:(NSInteger) minute {
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     [dateComponents setMinute:minute];
     return [gregorian dateByAddingComponents:dateComponents toDate:self options:0];

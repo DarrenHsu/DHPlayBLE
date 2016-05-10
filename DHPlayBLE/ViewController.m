@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "DHCentralManager.h"
 #import "DHPeripheralManager.h"
+#import "DHManager.h"
 
 @interface ViewController () <UITextViewDelegate> {
     CGRect _orignalRect;
@@ -17,6 +18,8 @@
 @property (nonatomic, weak) IBOutlet UIView *baseView;
 @property (nonatomic, weak) IBOutlet UITextView *receiverTextView;
 @property (nonatomic, weak) IBOutlet UITextView *sendTextView;
+
+@property (nonatomic, strong) DHManager *manager;
 
 @property (nonatomic, strong) DHCentralManager *centralManager;
 @property (nonatomic, strong) DHPeripheralManager *peripheralManager;
@@ -29,15 +32,20 @@
 #define TRANSFER_CHARACTERISTIC_UUID    @"08590F7E-DB05-467E-8757-72F6FAEB13D4"
 
 - (IBAction) sendMessage:(id)sender {
-    [_peripheralManager changeMessage:_sendTextView.text];
+    [_peripheralManager changeMessage:_sendTextView.text sender:[_manager getSender] time:[_manager getTimeKey]];
     [_peripheralManager start];
 
     _sendTextView.text = nil;
+
+    _receiverTextView.text = _manager.message;
+    _receiverTextView.font = [UIFont boldSystemFontOfSize:14];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+    _manager = [DHManager shardInstance];
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognizer:)];
     [self.view addGestureRecognizer:tapRecognizer];
@@ -52,6 +60,7 @@
 
     [_centralManager start:^(NSString *message) {
         _receiverTextView.text = message;
+        _receiverTextView.font = [UIFont boldSystemFontOfSize:14];
     }];
 
     /* 偵測鍵盤是否出現 */
@@ -107,22 +116,6 @@
 }
 
 #pragma mark - UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    return YES;
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-
-}
-
 - (void)textViewDidChange:(UITextView *)textView {
     [_peripheralManager stop];
 }

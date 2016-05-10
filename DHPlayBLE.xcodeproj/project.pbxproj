@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8C30AAAC1CE0557800D1BB7F /* NSDate+Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C30AAAB1CE0557800D1BB7F /* NSDate+Today.m */; };
+		8C9751221CE1755200CB3D35 /* DHManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9751211CE1755200CB3D35 /* DHManager.m */; };
 		8CB1D80B1CDC255900DB57F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D80A1CDC255900DB57F1 /* main.m */; };
 		8CB1D80E1CDC255900DB57F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D80D1CDC255900DB57F1 /* AppDelegate.m */; };
 		8CB1D8111CDC255900DB57F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1D8101CDC255900DB57F1 /* ViewController.m */; };
@@ -21,6 +22,8 @@
 /* Begin PBXFileReference section */
 		8C30AAAA1CE0557800D1BB7F /* NSDate+Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Today.h"; sourceTree = "<group>"; };
 		8C30AAAB1CE0557800D1BB7F /* NSDate+Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Today.m"; sourceTree = "<group>"; };
+		8C9751201CE1755200CB3D35 /* DHManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHManager.h; sourceTree = "<group>"; };
+		8C9751211CE1755200CB3D35 /* DHManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHManager.m; sourceTree = "<group>"; };
 		8CB1D8061CDC255900DB57F1 /* DHPlayBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHPlayBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB1D80A1CDC255900DB57F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8CB1D80C1CDC255900DB57F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 		8CB1D8211CDC258100DB57F1 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				8C9751201CE1755200CB3D35 /* DHManager.h */,
+				8C9751211CE1755200CB3D35 /* DHManager.m */,
 				8CB1D8251CDC3E2B00DB57F1 /* DHCentralManager.h */,
 				8CB1D8261CDC3E2B00DB57F1 /* DHCentralManager.m */,
 				8CB1D8281CDC3E4700DB57F1 /* DHPeripheralManager.h */,
@@ -199,6 +204,7 @@
 				8CB1D8111CDC255900DB57F1 /* ViewController.m in Sources */,
 				8CB1D80E1CDC255900DB57F1 /* AppDelegate.m in Sources */,
 				8C30AAAC1CE0557800D1BB7F /* NSDate+Today.m in Sources */,
+				8C9751221CE1755200CB3D35 /* DHManager.m in Sources */,
 				8CB1D80B1CDC255900DB57F1 /* main.m in Sources */,
 				8CB1D8271CDC3E2B00DB57F1 /* DHCentralManager.m in Sources */,
 				8CB1D82A1CDC3E4700DB57F1 /* DHPeripheralManager.m in Sources */,

@@ -15,7 +15,7 @@
 - (void) createManagerWithServiceId:(NSString *) sUUID characteristicId:(NSString *) cUUID message:(NSString *) message;
 - (void) createManagerWithServiceId:(NSString *) sUUID characteristicId:(NSString *) cUUID;
 
-- (void) changeMessage:(NSString *) message;
+- (void) changeMessage:(NSString *) message sender:(NSString *) sender time:(NSString *) time;
 
 - (void) start;
 - (void) stop;

@@ -9,12 +9,11 @@
 @import CoreBluetooth;
 
 #import "DHCentralManager.h"
+#import "DHManager.h"
 
 static DHCentralManager *_manager = nil;
 
 @interface DHCentralManager () <CBCentralManagerDelegate,CBPeripheralDelegate>
-
-@property (nonatomic, strong) NSString              *currentKey;
 
 @property (nonatomic, strong) NSString              *sUUID;
 @property (nonatomic, strong) NSString              *cUUID;
@@ -33,7 +32,6 @@ static DHCentralManager *_manager = nil;
     @synchronized (_manager) {
         if (!_manager) {
             _manager = [DHCentralManager new];
-            _manager.message = [NSMutableString new];
         }
     }
     return _manager;
@@ -99,7 +97,7 @@ static DHCentralManager *_manager = nil;
 }
 
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict {
-    NSLog(@"<BLE central> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE central> %@",NSStringFromSelector(_cmd));
 
 }
 
@@ -145,22 +143,22 @@ static DHCentralManager *_manager = nil;
 
 #pragma mark - CBPeripheralDelegate Methods
 - (void)peripheralDidUpdateName:(CBPeripheral *)peripheral {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray<CBService *> *)invalidatedServices {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
@@ -179,7 +177,7 @@ static DHCentralManager *_manager = nil;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
@@ -212,18 +210,12 @@ static DHCentralManager *_manager = nil;
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         [self.centralManager cancelPeripheralConnection:peripheral];
 
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:_data options:kNilOptions error:&error];
-        NSString *key = [dictionary allKeys][0];
-        if (![key isEqualToString:_currentKey]) {
-            _currentKey = key;
-            NSString *msg = [dictionary allValues][0];
-            [_message appendFormat:_message.length > 0 ? @"\n%@    %@" : @"%@    %@",key,msg];
+        NSLog(@"cancelPeripheralConnection");
 
-            if (_receiverMessage)
-                _receiverMessage(_message);
-
-            NSLog(@"_message %@",_message);
-        }
+        DHManager *manager = [DHManager shardInstance];
+        NSString *msg = [manager appendMessageData:_data];
+        if (msg && _receiverMessage)
+            _receiverMessage(msg);
     }
 
     [self.data appendData:characteristic.value];
@@ -232,7 +224,7 @@ static DHCentralManager *_manager = nil;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
@@ -256,18 +248,18 @@ static DHCentralManager *_manager = nil;
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
 
 }
 
 - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
-    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
-    
+//    NSLog(@"<BLE peripheral> %@",NSStringFromSelector(_cmd));
+
 }
 
 @end

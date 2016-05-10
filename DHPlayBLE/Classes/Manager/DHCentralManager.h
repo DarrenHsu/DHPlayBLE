@@ -10,8 +10,6 @@
 
 @interface DHCentralManager : NSObject
 
-@property (nonatomic, strong) NSMutableString *message;
-
 + (instancetype) shardInstance;
 
 - (void) createManagerWithServiceId:(NSString *) sUUID characteristicId:(NSString *) cUUID;
