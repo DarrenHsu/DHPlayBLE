@@ -22,7 +22,7 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Reciver Message!" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ms8-hE-2zU">
                                         <rect key="frame" x="20" y="20" width="560" height="514"/>
-                                        <color key="backgroundColor" red="0.78707270981112099" green="0.80000000000000004" blue="0.77038257324851767" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>

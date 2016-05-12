@@ -39,6 +39,13 @@
 
     _receiverTextView.text = _manager.message;
     _receiverTextView.font = [UIFont boldSystemFontOfSize:14];
+
+    CGRect rect = CGRectMake(0,
+                             _receiverTextView.contentSize.height - _receiverTextView.bounds.size.height,
+                             _receiverTextView.bounds.size.width,
+                             _receiverTextView.bounds.size.height);
+
+    [_receiverTextView scrollRectToVisible:rect animated:YES];
 }
 
 - (void)viewDidLoad {
